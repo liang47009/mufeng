@@ -11,7 +11,7 @@
 #include <GLES2/gl2ext.h>
 #include <NDKHelper.h>
 
-#include "DataContainer.h"
+#include "CEGUI/DataContainer.h"
 
 GLuint CreateSimpleTexture2D();
 
@@ -21,7 +21,7 @@ GLuint CreateSimpleTexture2D(AAssetManager* gAssetMgr,
 GLuint CreateSimpleTextureCubemap();
 
 bool readFile(AAssetManager* gAssetMgr, const std::string fileName,
-		RawDataContainer* buffer_ref);
+		CEGUI::RawDataContainer* buffer_ref);
 
 void printGLString(const char *name, GLenum s);
 

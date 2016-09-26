@@ -12,7 +12,7 @@
 #include "texture_utils.h"
 
 bool readFile(AAssetManager* gAssetMgr, const std::string fileName,
-		RawDataContainer* buffer_ref) {
+		CEGUI::RawDataContainer* buffer_ref) {
 	//Fallback to assetManager
 	AAsset* assetFile = AAssetManager_open(gAssetMgr, fileName.c_str(),
 			AASSET_MODE_BUFFER);
@@ -94,7 +94,7 @@ GLuint CreateSimpleTexture2D(AAssetManager* gAssetMgr,
 			0, 0, 255, // Blue
 			255, 255, 0, // Yellow
 			};
-	RawDataContainer buffer;
+	CEGUI::RawDataContainer buffer;
 	readFile(gAssetMgr, filename, &buffer);
 	FIMEMORY *mem = 0;
 	FIBITMAP *img = 0;

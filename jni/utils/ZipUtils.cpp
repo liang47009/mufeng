@@ -77,7 +77,7 @@ std::string ZipUtils::getFinalFilename(const std::string& filename,
 
 //----------------------------------------------------------------------------//
 void ZipUtils::loadRawDataContainer(const std::string& filename,
-		RawDataContainer& output, const std::string& resourceGroup) {
+		CEGUI::RawDataContainer& output, const std::string& resourceGroup) {
 	const std::string final_filename = getFinalFilename(filename,
 			resourceGroup);
 
@@ -112,8 +112,8 @@ void ZipUtils::loadRawDataContainer(const std::string& filename,
 		return;
 	}
 
-	ulong size = file_info.uncompressed_size;
-	uint8_t* buffer = NEW_ARRAY_PT(uint8_t, size, RawDataContainer);
+	CEGUI::ulong size = file_info.uncompressed_size;
+	uint8_t* buffer = CEGUI_NEW_ARRAY_PT(uint8_t, size, CEGUI::RawDataContainer);
 
 	if (unzReadCurrentFile(d_pimpl->d_zfile, buffer, size) < 0) {
 		LOGE("'%s' error reading file", final_filename.c_str());
@@ -178,7 +178,7 @@ size_t ZipUtils::getResourceGroupFileNames(std::vector<std::string>& out_vec,
 }
 
 //----------------------------------------------------------------------------//
-void ZipUtils::unloadRawDataContainer(RawDataContainer& data) {
+void ZipUtils::unloadRawDataContainer(CEGUI::RawDataContainer& data) {
 	data.release();
 }
 

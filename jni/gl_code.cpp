@@ -30,7 +30,7 @@
 #include <NDKHelper.h>
 #include "utils/texture_utils.h"
 #include "utils/ResourceGroupManager.h"
-#include "utils/DataContainer.h"
+#include "CEGUI/DataContainer.h"
 
 GLuint gProgram;
 GLuint gPositionLoc;

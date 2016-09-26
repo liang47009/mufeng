@@ -11,7 +11,7 @@
 #endif // __i386__
 #endif // USE_NDK_PROFILER
 #include "Engine.h"
-
+#include "engine/CEGUIRenderer.h"
 //-------------------------------------------------------------------------
 //Preprocessor
 //-------------------------------------------------------------------------
@@ -279,7 +279,7 @@ void Engine::SetState(android_app* state) {
 
 	//Init helper functions
 	ndk_helper::JNIHelper::Init(state->activity, HELPER_CLASS_NAME);
-	render_ = new SampleRender;
+	render_ = new CEGUIRenderer;
 }
 
 bool Engine::IsReady() {

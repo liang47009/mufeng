@@ -14,7 +14,7 @@
 #include <vector>
 #include <string>
 #include <map>
-#include "utils/DataContainer.h"
+#include "CEGUI/DataContainer.h"
 
 namespace ZipUtils {
 
@@ -22,14 +22,14 @@ void setArchive(const std::string& archive);
 void setLoadLocal(bool load = true);
 std::string getFinalFilename(const std::string& filename,
 		const std::string& resourceGroup);
-void loadRawDataContainer(const std::string& filename, RawDataContainer& output,
+void loadRawDataContainer(const std::string& filename, CEGUI::RawDataContainer& output,
 		const std::string& resourceGroup);
 size_t getResourceGroupFileNames(std::vector<std::string>& out_vec,
 		const std::string& file_pattern, const std::string& resource_group);
 bool doesFileExist(const std::string& filename);
 void openArchive();
 void closeArchive();
-void unloadRawDataContainer(RawDataContainer& data);
+void unloadRawDataContainer(CEGUI::RawDataContainer& data);
 void setResourceGroupDirectory(const std::string& resourceGroup,
 		const std::string& directory);
 const std::string& getResourceGroupDirectory(const std::string& resourceGroup);

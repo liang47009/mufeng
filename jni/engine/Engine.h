@@ -16,7 +16,7 @@
 #include <android/native_window_jni.h>
 #include <cpu-features.h>
 
-#include "engine/SampleRender.h"
+#include "engine/GLES2Renderer.h"
 
 class Engine {
 //	TeapotRenderer renderer_;
@@ -34,7 +34,9 @@ class Engine {
 	ndk_helper::TapCamera tap_camera_;
 
 	android_app* app_;
-	SampleRender* render_;
+
+	GLES2Renderer* render_;
+
 	ASensorManager* sensor_manager_;
 	const ASensor* accelerometer_sensor_;
 	ASensorEventQueue* sensor_event_queue_;

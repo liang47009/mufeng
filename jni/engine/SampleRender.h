@@ -10,7 +10,9 @@
 
 #include <GLES2/gl2.h>
 
-class SampleRender {
+#include "engine/GLES2Renderer.h"
+
+class SampleRender : public GLES2Renderer {
 public:
 	SampleRender() {
 		gSamplerLoc = NULL;
@@ -21,6 +23,7 @@ public:
 	}
 	~SampleRender() {
 	}
+protected:
 	bool initDisplay();
 	void drawFrame();
 private:
