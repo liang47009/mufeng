@@ -5,6 +5,11 @@
  *      Author: xll
  */
 
+#ifdef USE_NDK_PROFILER
+#if !defined(__i386__)
+#include <prof.h>
+#endif // __i386__
+#endif // USE_NDK_PROFILER
 #include "Engine.h"
 #include "utils/texture_utils.h"
 
@@ -70,9 +75,9 @@ int Engine::InitDisplay() {
 //	ShowUI();
 
 // Initialize GL state.
-	glEnable (GL_CULL_FACE);
-	glEnable (GL_DEPTH_TEST);
-	glDepthFunc (GL_LEQUAL);
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
 
 	printGLString("Version", GL_VERSION);
 	printGLString("Vendor", GL_VENDOR);
@@ -185,7 +190,7 @@ void Engine::DrawFrame() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 //	renderer_.Render();
 	// Clear the color buffer
-	glClear (GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);
 
 	// Use the program object
 	glUseProgram(gProgram);
@@ -201,7 +206,7 @@ void Engine::DrawFrame() {
 	glEnableVertexAttribArray(gTexCoordLoc);
 
 	// Bind the texture
-	glActiveTexture (GL_TEXTURE0);
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, gTexture);
 
 	// Set the texture sampler to texture unit to 0
@@ -227,6 +232,7 @@ void Engine::TrimMemory() {
 	LOGI("Trimming memory");
 	gl_context_->Invalidate();
 }
+
 /**
  * Process the next input event.
  */
@@ -384,6 +390,12 @@ void Engine::SetState(android_app* state) {
 	doubletap_detector_.SetConfiguration(app_->config);
 	drag_detector_.SetConfiguration(app_->config);
 	pinch_detector_.SetConfiguration(app_->config);
+
+#ifdef USE_NDK_PROFILER
+#if !defined(__i386__)
+	monstartup("libmufeng.so");
+#endif
+#endif
 
 	//Init helper functions
 	ndk_helper::JNIHelper::Init(state->activity, HELPER_CLASS_NAME);

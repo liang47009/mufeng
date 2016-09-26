@@ -20,12 +20,6 @@
 #include <jni.h>
 #include <errno.h>
 
-#ifdef USE_NDK_PROFILER
-#if !defined(__i386__)
-#include <prof.h>
-#endif // __i386__
-#endif // USE_NDK_PROFILER
-
 #include "engine/Engine.h"
 
 struct android_app;
@@ -45,12 +39,6 @@ void android_main(android_app* state) {
 	state->userData = &g_engine;
 	state->onAppCmd = Engine::HandleCmd;
 	state->onInputEvent = Engine::HandleInput;
-
-#ifdef USE_NDK_PROFILER
-#if !defined(__i386__)
-	monstartup("libmufeng.so");
-#endif
-#endif
 
 	// Prepare to monitor accelerometer
 	g_engine.InitSensors();
