@@ -16,6 +16,8 @@
 #include <android/native_window_jni.h>
 #include <cpu-features.h>
 
+#include "engine/SampleRender.h"
+
 class Engine {
 //	TeapotRenderer renderer_;
 
@@ -32,16 +34,10 @@ class Engine {
 	ndk_helper::TapCamera tap_camera_;
 
 	android_app* app_;
-
+	SampleRender* render_;
 	ASensorManager* sensor_manager_;
 	const ASensor* accelerometer_sensor_;
 	ASensorEventQueue* sensor_event_queue_;
-
-	GLuint gProgram;
-	GLuint gPositionLoc;
-	GLuint gTexCoordLoc;
-	GLuint gSamplerLoc;
-	GLuint gTexture;
 
 	void UpdateFPS(float fFPS);
 	void ShowUI();

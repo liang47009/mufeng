@@ -8,6 +8,7 @@
 #define SAMPLE_UTIL_TEXTURE_UTILS_H
 
 #include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
 #include <NDKHelper.h>
 
 #include "DataContainer.h"
