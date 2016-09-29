@@ -28,6 +28,8 @@
 #include <android_native_app_glue.h>
 #include <android/asset_manager_jni.h>
 #include <NDKHelper.h>
+
+#include "engine/AndroidResourceProvider.h"
 #include "utils/texture_utils.h"
 #include "utils/ResourceGroupManager.h"
 #include "CEGUI/DataContainer.h"
@@ -43,12 +45,11 @@ static ResourceGroupManager* rgm;
 
 void created(AAssetManager* assetMgr) {
 	gAssetMgr = assetMgr;
-
 	rgm = new ResourceGroupManager(assetMgr);
-
 	rgm->setResourceGroupDirectory("texture", "texture");
-	LOGI("find resource group texture:",
-			rgm->getResourceGroupDirectory("texture").c_str());
+	LOGI(
+			"find resource group texture:", rgm->getResourceGroupDirectory("texture").c_str());
+
 }
 
 bool setupGraphics(int w, int h) {
@@ -106,14 +107,14 @@ bool setupGraphics(int w, int h) {
 }
 
 void renderFrame() {
-	GLfloat vertices[] = { -0.5f, 0.5f, 0.0f,  // Position 0
-			0.0f, 0.0f,        // TexCoord 0
-			-0.5f, -0.5f, 0.0f,  // Position 1
-			0.0f, 1.0f,        // TexCoord 1
-			0.5f, -0.5f, 0.0f,  // Position 2
-			1.0f, 1.0f,        // TexCoord 2
-			0.5f, 0.5f, 0.0f,  // Position 3
-			1.0f, 0.0f         // TexCoord 3
+	GLfloat vertices[] = { -0.5f, 0.5f, 0.0f, // Position 0
+			0.0f, 0.0f, // TexCoord 0
+			-0.5f, -0.5f, 0.0f, // Position 1
+			0.0f, 1.0f, // TexCoord 1
+			0.5f, -0.5f, 0.0f, // Position 2
+			1.0f, 1.0f, // TexCoord 2
+			0.5f, 0.5f, 0.0f, // Position 3
+			1.0f, 0.0f // TexCoord 3
 			};
 	GLushort indices[] = { 0, 1, 2, 0, 2, 3 };
 
@@ -162,6 +163,7 @@ JNIEXPORT void JNICALL Java_com_yunfeng_mufeng_GL2JNILib_step(JNIEnv *,
 		jobject) {
 	renderFrame();
 }
+
 JNIEXPORT void JNICALL Java_com_yunfeng_mufeng_GL2JNILib_created(JNIEnv *env,
 		jobject, jobject assetManager) {
 	AAssetManager* assetMgr = AAssetManager_fromJava(env, assetManager);

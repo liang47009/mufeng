@@ -279,7 +279,8 @@ void Engine::SetState(android_app* state) {
 
 	//Init helper functions
 	ndk_helper::JNIHelper::Init(state->activity, HELPER_CLASS_NAME);
-	render_ = new CEGUIRenderer;
+	render_ = new CEGUIRenderer();
+	render_->assetManager = state->activity->assetManager;
 }
 
 bool Engine::IsReady() {

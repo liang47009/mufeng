@@ -16,7 +16,7 @@
 #include <android/native_window_jni.h>
 #include <cpu-features.h>
 
-#include "engine/GLES2Renderer.h"
+#include "engine/CEGUIRenderer.h"
 
 class Engine {
 //	TeapotRenderer renderer_;
@@ -35,7 +35,7 @@ class Engine {
 
 	android_app* app_;
 
-	GLES2Renderer* render_;
+	CEGUIRenderer* render_;
 
 	ASensorManager* sensor_manager_;
 	const ASensor* accelerometer_sensor_;

@@ -34,11 +34,13 @@ LOCAL_SRC_FILES 		:= $(MY_CPP_LIST:$(LOCAL_PATH)/%=%)
 
 LOCAL_LDLIBS    		:= -llog -landroid -lm -lz -lEGL -lGLESv2 -lGLESv1_CM
 
-LOCAL_STATIC_LIBRARIES 	:= ndk_helper cpufeatures android_native_app_glue android_support freeimage freetype
+LOCAL_STATIC_LIBRARIES 	:= ndk_helper cpufeatures android_native_app_glue android_support freeimage freetype CEGUI
 
 include $(BUILD_SHARED_LIBRARY)
 
 $(call import-module, ogre/FreeImage)
+$(call import-module, ogre/CEGUI)
+$(call import-module, ogre/minizip)
 $(call import-module, ogre/freetype)
 $(call import-module, android/support)
 $(call import-module, android/ndk_helper)

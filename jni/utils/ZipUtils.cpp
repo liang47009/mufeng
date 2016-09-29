@@ -6,7 +6,7 @@
  */
 
 #include <fstream>
-#include "utils/minizip/unzip.h"
+#include <minizip/unzip.h>
 #include "utils/ZipUtils.h"
 #include "utils/texture_utils.h"
 

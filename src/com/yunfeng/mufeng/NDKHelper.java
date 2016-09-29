@@ -121,11 +121,9 @@ public class NDKHelper {
 					bitmap = scaleBitmap(bitmap, width, height);
 				}
 			}
-
 		} catch (Exception e) {
 			Log.w("NDKHelper", "Coundn't load a file:" + path);
 		}
-
 		return bitmap;
 	}
 
