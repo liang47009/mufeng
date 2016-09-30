@@ -166,5 +166,6 @@ bool CEGUIRenderer::initDisplay() {
 }
 
 void CEGUIRenderer::drawFrame() {
-
+    CEGUI::System& gui_system(CEGUI::System::getSingleton());
+    gui_system.getDefaultGUIContext().draw();
 }
