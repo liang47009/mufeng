@@ -6,9 +6,9 @@
  */
 
 #ifdef USE_NDK_PROFILER
-#if !defined(__i386__)
-#include <prof.h>
-#endif // __i386__
+//#if !defined(__i386__)
+//#include <prof.h>
+//#endif // __i386__
 #endif // USE_NDK_PROFILER
 #include "Engine.h"
 #include "engine/CEGUIRenderer.h"
@@ -210,12 +210,12 @@ void Engine::HandleCmd(struct android_app* app, int32_t cmd) {
 		eng->TrimMemory();
 		break;
 	case APP_CMD_DESTROY:
-#ifdef USE_NDK_PROFILER
-#if !defined(__i386__)
-		setenv("CPUPROFILE", "/sdcard/gmon.out", 1);
-		moncleanup();
-#endif// __i386__
-#endif//USE_NDK_PROFILER
+//#ifdef USE_NDK_PROFILER
+//#if !defined(__i386__)
+//		setenv("CPUPROFILE", "/sdcard/gmon.out", 1);
+//		moncleanup();
+//#endif// __i386__
+//#endif//USE_NDK_PROFILER
 		break;
 	}
 }
@@ -271,11 +271,11 @@ void Engine::SetState(android_app* state) {
 	doubletap_detector_.SetConfiguration(app_->config);
 	drag_detector_.SetConfiguration(app_->config);
 	pinch_detector_.SetConfiguration(app_->config);
-#ifdef USE_NDK_PROFILER
-#if !defined(__i386__)
-	monstartup("libmufeng.so");
-#endif
-#endif
+//#ifdef USE_NDK_PROFILER
+//#if !defined(__i386__)
+//	monstartup("libmufeng.so");
+//#endif
+//#endif
 
 	//Init helper functions
 	ndk_helper::JNIHelper::Init(state->activity, HELPER_CLASS_NAME);

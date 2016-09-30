@@ -9,8 +9,8 @@
 #include <dirent.h>
 #include <fnmatch.h>
 
-#include "CEGUI/DefaultResourceProvider.h"
 #include "CEGUI/Exceptions.h"
+#include "CEGUI/DefaultResourceProvider.h"
 
 #include "utils/texture_utils.h"
 #include "engine/AndroidResourceProvider.h"
@@ -36,17 +36,26 @@ void AndroidResourceProvider::loadRawDataContainer(
 		//		pthread_mutex_unlock(&mutex_);
 		return;
 	}
-	uint8_t* data = (uint8_t*) AAsset_getBuffer(assetFile);
+//	CEGUI::uint8* data = (CEGUI::uint8*) AAsset_getBuffer(assetFile);
 	int32_t size = AAsset_getLength(assetFile);
-	if (data == NULL) {
+
+	unsigned char* const buffer =
+			CEGUI_NEW_ARRAY_PT(unsigned char, size, RawDataContainer);
+	int size_read = AAsset_read(assetFile, buffer, size);
+	if (size_read != size) {
+		CEGUI_DELETE_ARRAY_PT(buffer, unsigned char, size, BufferAllocator);
+		LOGI("size_read: %d, size:%d", size_read, size);
+		return;
+	}
+	if (buffer == NULL) {
 		AAsset_close(assetFile);
 		LOGI("no data found: %s", final_filename.c_str());
 		//		pthread_mutex_unlock(&mutex_);
 		return;
 	}
 	output.setSize(size);
-	output.setData(data);
-	LOGI("filedata:\n%s", data);
+	output.setData(buffer);
+	LOGI("fileName:%s, len:%d", filename.c_str(), size);
 	AAsset_close(assetFile);
 	//	pthread_mutex_unlock(&mutex_);
 //	} else {
